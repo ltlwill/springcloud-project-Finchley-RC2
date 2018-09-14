@@ -1,17 +1,26 @@
-# 单个eureka服务中心
-spring:
-  application:
-    name: ms-eureka-server
-
 # 服务器配置
 server:
   # 指定该Eureka实例的端口
   port: 8761
   
+# 单个eureka服务中心
+spring:
+  application:
+    name: ms-eureka-server
+  security: 
+    user:
+      name: eureka_admin
+      password: eureka_admin_123  
+  
 # eureka服务配置
 eureka:
+  #instance:
+    #hostname: localhost
   instance:
-    hostname: ms-eureka-server
+    prefer-ip-address: true
+    # 在springcloud中服务的 Instance ID 默认值是:${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}},也就是：主机名：应用名：应用端口
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}  
   server:
     # 关闭自我保护
     enableSelfPreservation: false  

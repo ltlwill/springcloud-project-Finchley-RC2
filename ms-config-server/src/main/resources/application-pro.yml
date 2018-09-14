@@ -1,0 +1,25 @@
+# 服务器配置
+server:
+  # 指定端口
+  port: 8771
+# spring 配置
+spring: 
+  # rabbitmq配置  
+  rabbitmq:
+    # rabbitmq主机地址
+    host: 192.168.2.55
+    # rabbitmq qmpq端口（默认5672）
+    port: 5672
+    # rabbitmq用户名
+    username: admin
+    # rabbitmq 用户密码
+    password: admin1234
+  cloud:
+    bus:
+      trace:
+        # 开启消息跟踪
+        enable: true
+    config:
+      profile: subversion    
+        
+        

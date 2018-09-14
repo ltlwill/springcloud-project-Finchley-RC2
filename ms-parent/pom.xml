@@ -4,7 +4,7 @@
 
     <groupId>com.efe.ms</groupId>
     <artifactId>ms-parent</artifactId>
-    <version>1.0</version>
+    <version>0.5</version>
     <packaging>pom</packaging>
 
     <name>ms-parent</name>
@@ -14,16 +14,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Finchley.RC2</spring-cloud.version>
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
         <junit.version>4.12</junit.version>
     </properties>
 
-    <!-- spring boot parent 2.0.2.RELEASE -->
+    <!-- spring boot parent 2.0.4.RELEASE -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.2.RELEASE</version>
+        <version>2.0.4.RELEASE</version>
     </parent>
 
     <!-- spring cloud base -->
@@ -58,17 +58,34 @@
     </build>
 
     <dependencies>
+        <!-- eureka client(注册到eureka服务中心需要)-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        
+        <!-- Feign，使用feign时不需要再次依赖ribbon、hystrix了，默认已经依赖了，feign是一个声明式的Web Service客户端，它使得编写Web Serivce客户端变得更加简单，整合了Ribbon和Eureka来提供均衡负载的HTTP客户端实现 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        
+        <!-- hystrix 断路器(feign中已经依赖了，使用@SpringCloudApplication时还会报:java.lang.NoClassDefFoundError: com/netflix/hystrix/contrib/javanica/aop/aspectj/HystrixCommandAspect) -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        
+        <!-- spring boot web -->
+        <!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency> -->
+    
         <!-- spring cloud config -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-
-        <!-- spring boot hot dev -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
         </dependency>
 
         <!-- spring boot actuator -->
@@ -82,14 +99,58 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
+        
+        <!-- sleuth -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <!-- zipkin -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+        
+        <!-- spring cloud security 实现eureka服务注册中心开启用户认证，即：需要用户密码登录才能看eureka注册中心界面-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        
+        <!-- spring cloud oAuth2 -->
+       <!-- <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-starter-oauth2</artifactId>
+       </dependency> -->
 
+        <!-- spring boot  -->
+        <!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency> -->
+        <!-- spring boot hot dev -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- spring boot test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!-- log4j2依赖 --> 
+        <!-- <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-log4j2</artifactId>  
+        </dependency>  -->
+        <!-- 加上这个才能辨认到log4j2.yml文件 -->
+        <!-- <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency> -->
+ 
         <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -102,7 +163,8 @@
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
+            <!-- <url>https://repo.spring.io/libs-milestone</url> -->
+            <url>http://192.168.2.6:9091/nexus/content/repositories/spring-milestones/</url> 
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
