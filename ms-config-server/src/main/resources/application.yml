@@ -13,18 +13,21 @@ spring:
     name: config-server
   profiles:
     # 使用subversion(svn)方式
-    active: subversion
+    #active: subversion,dev
+    include:
+      - subversion
+      - dev
   
   # rabbitmq配置  
   rabbitmq:
     # rabbitmq主机地址
-    host: 192.168.3.55
+    host: 192.168.2.6
     # rabbitmq qmpq端口（默认5672）
     port: 5672
     # rabbitmq用户名
-    username: admin
+    username: ms_client_test
     # rabbitmq 用户密码
-    password: admin1234
+    password: test1234
   cloud:
     bus:
       trace: 
