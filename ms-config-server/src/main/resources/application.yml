@@ -5,7 +5,7 @@
 # 服务器配置
 server:
   # 指定端口
-  port: 8770
+  port: 8720
   
 #spring  配置
 spring:
@@ -39,7 +39,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: bus-refresh 
+        #include: bus-refresh
+        include: "*"
+  endpoint:
+    health:
+      show-details: always   
 
 # 注册到eureka服务注册中心  
 eureka:
@@ -48,10 +52,13 @@ eureka:
     # 在springcloud中服务的 Instance ID 默认值是:${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}},也就是：主机名：应用名：应用端口
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     hostname: ${spring.cloud.client.ip-address}
+    #metadata-map: # 如果配置了用户密码
+      #user.name: ${spring.security.user.name}
+      #user.password: ${spring.security.user.password}
   client:
     serviceUrl:
       # 注册到单服务中心
-      defaultZone: http://eureka_admin:eureka_admin_123@localhost:8761/eureka/
+      defaultZone: http://eureka_admin:eureka_admin_123@localhost:8710/eureka/
       # 将配置中心服务注册到高可用的eureka服务注册中心（集群）
       # 无需要认证版
       # defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/ 

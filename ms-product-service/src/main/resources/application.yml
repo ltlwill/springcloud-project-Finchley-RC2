@@ -56,7 +56,14 @@ spring:
       # defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
       # 需认证版（规则：http://user:password@host:port/eureka/）
       #defaultZone: http://eureka_admin:eureka_admin_123@peer1:8761/eureka/,http://eureka_admin:eureka_admin_123@peer2:8762/eureka/,http://eureka_admin:eureka_admin_123@peer3:8763/eureka/
-
+management: 
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always 
 # 日志配置
 logging:
   config: classpath:logback-${spring.profiles.active}.xml

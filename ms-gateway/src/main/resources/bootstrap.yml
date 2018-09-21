@@ -1,15 +1,12 @@
 # bootstrap.yml文件中的内容不能放到application.yml中，否则config部分无法被加载，因为config部分的配置先于application.yml被加载，而bootstrap.yml中的配置会先于application.yml加载
 spring:
   application:
-    # 对应 ms-config-server中所获取的远程配置文件的{application}
-    #name: product-service,common
-    name: product-service
+    name: gateway
   profiles:
     active: dev
   # 使用配置服务中心的配置信息（使用配置中心与eureka服务注册中心联合使用（将配置服务注册到eureka服务注册中心，用服务发现的方式）方式，推荐这种方式）
   cloud:
     config:
-      # name: ms-web-config
       profile: ${spring.profiles.active}
       # 注：如果配置中心使用的是SVN或本地目录时，不要配置label，否则读取不到配置中心配置的属性
       label:

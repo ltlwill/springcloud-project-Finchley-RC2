@@ -31,7 +31,7 @@ public class ProductLineController extends BaseController {
 	@Value("${customProps.remark}")
 	private String configRemark;
 	
-	@Value("${commonConfig.testValue}")
+//	@Value("${commonConfig.testValue}")
 	private String commonConfigValue;
 
 	@GetMapping
