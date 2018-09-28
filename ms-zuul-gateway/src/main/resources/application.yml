@@ -25,9 +25,13 @@ spring:
       enabled: true
     sampler:
       probability: 1.0
-  
+
 # zuul路由配置(也可以代码实现)
 zuul:
+  host:
+    connect-timeout-millis: 15000  # 15秒超时
+    connection-request-timeout-millis: 15000
+    socket-timeout-millis: 15000
   routes:
     baidu-route: 
       path: /baidu/**  

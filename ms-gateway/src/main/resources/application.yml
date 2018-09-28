@@ -11,7 +11,7 @@ management:
     health: 
       show-details: always
 
-# spring cloud gate网关配置
+# spring cloud gateway网关配置
 spring:
   # rabbitmq配置 （主要用于与sleuth、zipkin搭配实现链路跟踪，也可以配置到config配置中心）
   rabbitmq:                   

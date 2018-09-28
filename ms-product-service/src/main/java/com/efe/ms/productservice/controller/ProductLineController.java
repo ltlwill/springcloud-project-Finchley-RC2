@@ -1,5 +1,8 @@
 package com.efe.ms.productservice.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import com.efe.ms.productservice.service.ProductLineService;
  * 
  * @author Liu TianLong 2018年8月24日 下午5:21:23
  */
+@Api(tags="基础产品服务API")
 @RefreshScope
 @RestController
 @RequestMapping("/productline")
@@ -34,6 +38,7 @@ public class ProductLineController extends BaseController {
 //	@Value("${commonConfig.testValue}")
 	private String commonConfigValue;
 
+	@ApiOperation(value="获取所有产品线")
 	@GetMapping
 	public List<ProductLine> getAllProductLine() {
 		logger.info("开始查询产品线......");
