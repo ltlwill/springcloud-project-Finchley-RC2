@@ -11,7 +11,8 @@
   <url>http://maven.apache.org</url>
   
   <properties>
-    <lombok.version>1.18.2</lombok.version>
+      <swagger.version>2.9.2</swagger.version>
+      <lombok.version>1.18.2</lombok.version>
   </properties>
 
   <!-- parent pom -->
@@ -35,7 +36,7 @@
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-web</artifactId>
-          <!-- 除去一下依赖，否则启动失败 ,因spring cloud gateway使用的是reactor实现-->
+          <!-- 除去以下依赖，否则启动失败 ,因spring cloud gateway使用的是reactor实现-->
           <exclusions>
               <exclusion>
                 <groupId>org.springframework.boot</groupId>
@@ -47,7 +48,17 @@
               </exclusion>
           </exclusions>
       </dependency>
-      
+      <!-- swagger --> 
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger2</artifactId>
+          <version>${swagger.version}</version>
+      </dependency> 
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger-ui</artifactId>
+          <version>${swagger.version}</version>
+      </dependency>
       <!-- lombok -->
       <dependency>
           <groupId>org.projectlombok</groupId>

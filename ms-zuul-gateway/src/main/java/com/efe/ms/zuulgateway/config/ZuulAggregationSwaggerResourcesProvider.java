@@ -22,32 +22,36 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
  */
 @Component
 @Primary
-public class AggregationSwaggerResourcesProvider implements
+public class ZuulAggregationSwaggerResourcesProvider implements
 		SwaggerResourcesProvider {
 
 	private static final String REPLACE_PATTERN = "\\*\\*";
 	private static final String SWAGGER_DOCS_PATH = "v2/api-docs";
 	private static final String SWAGGER_VERSION = "2.0";
 	private static final Pattern IGNORE_PATH_PATTERN = Pattern
-			.compile("config-server|\\w*(-route)$");
+			.compile("config-server|\\w*(-route)$",Pattern.CASE_INSENSITIVE);
+	private static final Pattern AGGREATION_PATH_PATTERN = Pattern
+			.compile("\\w*(-service)$",Pattern.CASE_INSENSITIVE);
 
 	private final RouteLocator routeLocator;
 
-	public AggregationSwaggerResourcesProvider(RouteLocator routeLocator) {
+	public ZuulAggregationSwaggerResourcesProvider(RouteLocator routeLocator) {
 		this.routeLocator = routeLocator;
 	}
 
 	@Override
 	public List<SwaggerResource> get() {
 		List<SwaggerResource> resources = new ArrayList<SwaggerResource>();
-		routeLocator.getRoutes().forEach(route -> {
-			if (!IGNORE_PATH_PATTERN.matcher(route.getId()).matches()) { // 过滤不需要聚合的API信息
-					resources.add(swaggerResources(
-							route.getId(),
-							route.getFullPath().replaceAll(REPLACE_PATTERN,
-									SWAGGER_DOCS_PATH), SWAGGER_VERSION));
-				}
-			});
+		routeLocator
+				.getRoutes()
+				.stream()
+				.filter(route -> AGGREATION_PATH_PATTERN.matcher(route.getId())
+						.matches()) // 过滤不需要聚合的API信息
+				.forEach(
+						route -> resources.add(swaggerResources(
+								route.getId(),
+								route.getFullPath().replaceAll(REPLACE_PATTERN,
+										SWAGGER_DOCS_PATH), SWAGGER_VERSION)));
 		return resources;
 	}
 
