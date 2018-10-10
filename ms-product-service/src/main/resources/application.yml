@@ -21,6 +21,10 @@ spring:
     
   # Spring data JPA配置
   jpa:
+    hibernate:
+      naming:
+        # 解决列名都配置正确，但是还是出现SQL Error: 1054, SQLState: 42S22 Unknown column in 'field list' error的问题
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl 
     properties:
       hibernate:
         hbm2ddl:

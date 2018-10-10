@@ -23,7 +23,7 @@ import com.efe.ms.productservice.service.ProductLineService;
  * 
  * @author Liu TianLong 2018年8月24日 下午5:21:23
  */
-@Api(tags="基础产品服务API")
+@Api(tags="产品线API")
 @RefreshScope
 @RestController
 @RequestMapping("/productline")

@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.efe.ms.productservice.domain.ProductLine;
 
 /**
- * 产品线dao
- * <p>Abstract: </p> 
+ * 
+ * <p>产品线dao: </p> 
  * @author Liu TianLong
  * 2018年8月24日 下午5:55:28
  */
