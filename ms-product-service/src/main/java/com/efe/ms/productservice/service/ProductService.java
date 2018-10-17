@@ -2,11 +2,9 @@ package com.efe.ms.productservice.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-
 import com.efe.ms.productservice.domain.Combo;
 import com.efe.ms.productservice.domain.Product;
+import com.efe.ms.productservice.vo.Pagination;
 
 
 /**
@@ -43,9 +41,9 @@ public interface ProductService {
 	 * @param
 	 * @author Liu TianLong
 	 * @date 2018年10月16日 下午2:20:40
-	 * @return Page<Product>
+	 * @return PageVO<Product>
 	 */
-	Page<Product> getAllProducts(Integer pageNo,Integer pageSize,Product product);
+	Pagination<Product> getAllProducts(Pagination<Product> page,Product product);
 	
 	/**
 	 * 
