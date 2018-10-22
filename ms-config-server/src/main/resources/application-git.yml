@@ -8,9 +8,9 @@ spring:
           uri: https://github.com/ltlwill/springcloud-study/
           # 配置仓库路径下的相对搜索位置，可以配置多个，用,号分割
           searchPaths: config-repo
-          # 访问git仓库的用户名
+          # git仓库的用户名 
           username: your_git_account
-          # 访问git仓库的用户密码
+          # git仓库的用户密码
           password: your_git_password
 
   
