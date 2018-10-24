@@ -1,6 +1,7 @@
 package com.efe.ms.productservice.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -183,7 +184,7 @@ public class ProductServiceImpl implements ProductService {
 			return null;
 		}
 		return Optional.ofNullable(getComboListBySku(sku))
-				.orElse(new ArrayList<Combo>()).stream().map(Combo::getSubId)
+				.orElse(Collections.emptyList()).stream().map(Combo::getSubId)
 				.collect(Collectors.toList());
 	}
 

@@ -18,6 +18,11 @@ spring:
     #url: jdbc:mysql://192.168.2.252:3306/db_ebay?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=true
     #username: db_ebay_slave
     #password: db_ebay_slave
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.2.252:3306/db_ebay?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=true
+    username: db_ebay_slave
+    password: db_ebay_slave  
     
   # Spring data JPA配置
   jpa:

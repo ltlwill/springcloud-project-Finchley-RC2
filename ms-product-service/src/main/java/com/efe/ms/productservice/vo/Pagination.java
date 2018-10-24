@@ -24,13 +24,13 @@ public class Pagination<T> implements Serializable,Cloneable{
 	private long totalCount; // 记录数
 	private String sort;
 	private String direction;
-	private Collection<T> rows; // 数据
+	private Collection<T> data; // 数据
 
 	public Pagination() {
 	}
 
-	public Pagination(Collection<T> rows) {
-		this.rows = rows;
+	public Pagination(Collection<T> data) {
+		this.data = data;
 	}
 
 	public Pagination(int pageNo, int pageSize) {
@@ -38,10 +38,10 @@ public class Pagination<T> implements Serializable,Cloneable{
 		this.pageSize = pageSize;
 	}
 
-	public Pagination(int pageNo, int pageSize, long totalCount, Collection<T> rows) {
+	public Pagination(int pageNo, int pageSize, long totalCount, Collection<T> data) {
 		this(pageNo, pageSize);
 		this.totalCount = totalCount;
-		this.rows = rows;
+		this.data = data;
 	}
 
 	public Pagination(Page<T> page) {
@@ -71,8 +71,8 @@ public class Pagination<T> implements Serializable,Cloneable{
 		this.totalCount = totalCount;
 	}
 
-	public void setRows(Collection<T> rows) {
-		this.rows = rows;
+	public void setData(Collection<T> data) {
+		this.data = data;
 	}
 
 	public int getPageSize() {
@@ -116,8 +116,8 @@ public class Pagination<T> implements Serializable,Cloneable{
 		this.direction = direction;
 	}
 
-	public Collection<T> getRows() {
-		return rows;
+	public Collection<T> getData() {
+		return data;
 	}
 
 }
