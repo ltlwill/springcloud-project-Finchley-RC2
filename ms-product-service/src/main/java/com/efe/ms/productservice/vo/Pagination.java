@@ -60,8 +60,6 @@ public class Pagination<T> implements Serializable,Cloneable{
 	public static <T> Pagination<T> of(Page<T> page) {
 		return page == null ? new Pagination<T>() : new Pagination<T>(page);
 	}
-	
-	
 
 	public long getTotalCount() {
 		return totalCount;

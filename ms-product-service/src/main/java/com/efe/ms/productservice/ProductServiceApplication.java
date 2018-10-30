@@ -1,7 +1,12 @@
 package com.efe.ms.productservice;
 
+import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.efe.ms.productservice.events.ProductApplicationStartingEventListener;
 
 /**
  * 
@@ -14,6 +19,17 @@ import org.springframework.cloud.client.SpringCloudApplication;
 @SpringCloudApplication
 public class ProductServiceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ProductServiceApplication.class, args);
+		// SpringApplication.run(ProductServiceApplication.class, args);
+		SpringApplication app = new SpringApplication(
+				ProductServiceApplication.class);
+		app.addListeners(new ProductApplicationStartingEventListener()); // 注册一个监听器
+		app.addListeners((ApplicationReadyEvent event) -> System.out
+				.println("=====ApplicationReadyEvent=====")); // lamda表达式
+		app.run(args);
+	}
+
+	@Bean
+	public ExitCodeGenerator exitCodeGenerator() {
+		return () -> 110; // 自定义停机码
 	}
 }
