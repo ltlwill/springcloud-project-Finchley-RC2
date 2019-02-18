@@ -19,7 +19,7 @@ import springfox.documentation.swagger.web.UiConfigurationBuilder;
 /**
  * 
  * <p>
- * 因为Gateway里没有配置SwaggerConfig，而运行Swagger-ui又需要依赖一些接口，所以我的想法是自己建立相应的swagger-
+ * 因为Gateway里没有配置SwaggerConfig，而运行Swagger-ui又需要依赖一些接口，所以自己建立相应的swagger-
  * resource端点:
  * </p>
  * 
