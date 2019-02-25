@@ -47,6 +47,16 @@ public interface ProductService {
 	
 	/**
 	 * 
+	 * <p>分页获取产品数据: </p>
+	 * @param
+	 * @author Liu TianLong
+	 * @date 2019年2月25日 下午4:12:57
+	 * @return Pagination<Product>
+	 */
+	Pagination<Product> getAllProductsByPage(Integer pageNo,Integer pageSize,Product product);
+	
+	/**
+	 * 
 	 * <p>根据SKU获取combo组合信息: </p>
 	 * @param
 	 * @author Liu TianLong

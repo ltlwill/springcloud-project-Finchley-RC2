@@ -1,4 +1,4 @@
-package com.efe.ms.productservice.vo;
+package com.efe.ms.serviceconsumer.vo;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -16,7 +16,7 @@ import org.springframework.data.domain.Sort;
  * @author Liu TianLong 2018年10月17日 下午2:23:14
  */
 @SuppressWarnings({ "serial", "unused" })
-public class Pagination<T> implements Serializable,Cloneable{
+public class Pagination<T> implements Serializable, Cloneable {
 
 	private int pageSize = 20; // 每页显示的行数，默认20条
 	private int pageNo = 1; // 当前页号,默认第一页
@@ -38,23 +38,24 @@ public class Pagination<T> implements Serializable,Cloneable{
 		this.pageSize = pageSize == null ? this.pageSize : pageSize;
 	}
 
-	public Pagination(Integer pageNo, Integer pageSize, Long totalCount, Collection<T> data) {
+	public Pagination(Integer pageNo, Integer pageSize, Long totalCount,
+			Collection<T> data) {
 		this(pageNo, pageSize);
 		this.totalCount = totalCount == null ? 0 : totalCount;
 		this.data = data;
 	}
 
 	public Pagination(Page<T> page) {
-		this(page.getNumber() + 1, page.getSize(), page.getTotalElements(), page
-				.getContent());
+		this(page.getNumber() + 1, page.getSize(), page.getTotalElements(),
+				page.getContent());
 	}
-	
-	public PageRequest asPageRequest(Pagination<T> page){
+
+	public PageRequest asPageRequest(Pagination<T> page) {
 		return PageRequest.of(page.getPageNo() - 1, page.getPageSize());
 	}
-	
-	public PageRequest asPageRequest(Pagination<T> page,Sort sort){
-		return PageRequest.of(page.getPageNo() - 1, page.getPageSize(),sort);
+
+	public PageRequest asPageRequest(Pagination<T> page, Sort sort) {
+		return PageRequest.of(page.getPageNo() - 1, page.getPageSize(), sort);
 	}
 
 	public static <T> Pagination<T> of(Page<T> page) {

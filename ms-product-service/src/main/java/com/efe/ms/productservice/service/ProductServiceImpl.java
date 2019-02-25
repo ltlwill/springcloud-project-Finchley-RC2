@@ -138,6 +138,12 @@ public class ProductServiceImpl implements ProductService {
 				}, PageRequest.of(page.getPageNo() - 1, page.getPageSize(),
 						Sort.by(Direction.DESC, "id")))); // 按ID字段降序排序
 	}
+	
+	@Override
+	public Pagination<Product> getAllProductsByPage(Integer pageNo, Integer pageSize,
+			Product product) {
+		return getAllProducts(new Pagination<Product>(pageNo, pageSize), product); 
+	}
 
 	@Override
 	public List<Combo> getComboListBySku(String sku) {
@@ -196,5 +202,4 @@ public class ProductServiceImpl implements ProductService {
 		return String.valueOf(Optional.ofNullable(getProductBySku(sku))
 				.orElse(new Product()).getShipping());
 	}
-
 }
