@@ -33,7 +33,6 @@ spring:
       trace: 
         # 开启消息跟踪
         enable: true
-    
 # Spring boot 2.0的改动较大，/bus/refresh全部整合到actuator里面了，变成了/actuator/bus-refresh,所以之前1.x的management.security.enabled全部失效，不适用于2.0 
 management: 
   endpoints:
@@ -43,7 +42,7 @@ management:
         include: "*"
   endpoint:
     health:
-      show-details: always   
+      show-details: always
 
 # 注册到eureka服务注册中心  
 eureka:
