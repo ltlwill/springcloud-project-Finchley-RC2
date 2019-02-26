@@ -12,6 +12,12 @@ import com.efe.ms.serviceconsumer.domain.Combo;
 import com.efe.ms.serviceconsumer.domain.Product;
 import com.efe.ms.serviceconsumer.vo.Pagination;
 
+/**
+ * 
+ * <p>Product Service服务调用的feign客户端: </p> 
+ * @author Liu TianLong
+ * 2019年2月26日 下午2:42:41
+ */
 //@FeignClient(value = "product-service",fallback=ProductServiceFeignClientFallback.class)
 @FeignClient(value = "product-service")
 public interface ProductServiceFeignClient {
@@ -43,9 +49,25 @@ public interface ProductServiceFeignClient {
 	@GetMapping("/products")
 	Pagination<Product> getProductsByPage(@RequestParam Map<String,Object> map);
 	
+	/**
+	 * 
+	 * <p>根据SKU获取产品信息: </p>
+	 * @param
+	 * @author Liu TianLong
+	 * @date 2019年2月26日 下午2:43:02
+	 * @return Product
+	 */
 	@GetMapping("/products/{sku}")
 	Product getProductBySku(@PathVariable("sku") String sku);
 	
+	/**
+	 * 
+	 * <p>根据SKU获取此SKU的产品组合信息: </p>
+	 * @param
+	 * @author Liu TianLong
+	 * @date 2019年2月26日 下午2:43:17
+	 * @return List<Combo>
+	 */
 	@GetMapping("/products/combo/{sku}")
 	List<Combo> getComboListBySku(@PathVariable("sku") String sku);
 }
