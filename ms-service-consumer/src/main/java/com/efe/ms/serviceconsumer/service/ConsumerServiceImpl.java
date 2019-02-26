@@ -1,10 +1,12 @@
 package com.efe.ms.serviceconsumer.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.efe.ms.serviceconsumer.domain.Combo;
 import com.efe.ms.serviceconsumer.domain.Product;
 import com.efe.ms.serviceconsumer.feignclients.ProductServiceFeignClient;
 import com.efe.ms.serviceconsumer.util.MapUtil;
@@ -28,6 +30,16 @@ public class ConsumerServiceImpl implements ConsumerService {
 //		return productServiceFeignClient.getProductsByPage(page.getPageNo(),page.getPageSize(), product);
 		Map<String,Object> params = MapUtil.beansToMap(page,product);
 		return productServiceFeignClient.getProductsByPage(params);
+	}
+
+	@Override
+	public Product getProductBySku(String sku) throws Exception {
+		return productServiceFeignClient.getProductBySku(sku);
+	}
+
+	@Override
+	public List<Combo> getComboListBySku(String sku) throws Exception {
+		return productServiceFeignClient.getComboListBySku(sku);
 	}
 
 }

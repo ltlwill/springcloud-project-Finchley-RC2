@@ -1,11 +1,14 @@
 package com.efe.ms.serviceconsumer.feignclients;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.efe.ms.serviceconsumer.domain.Combo;
 import com.efe.ms.serviceconsumer.domain.Product;
 import com.efe.ms.serviceconsumer.vo.Pagination;
 
@@ -39,4 +42,10 @@ public interface ProductServiceFeignClient {
 	 */
 	@GetMapping("/products")
 	Pagination<Product> getProductsByPage(@RequestParam Map<String,Object> map);
+	
+	@GetMapping("/products/{sku}")
+	Product getProductBySku(@PathVariable("sku") String sku);
+	
+	@GetMapping("/products/combo/{sku}")
+	List<Combo> getComboListBySku(@PathVariable("sku") String sku);
 }

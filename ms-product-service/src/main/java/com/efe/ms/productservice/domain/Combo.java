@@ -19,7 +19,7 @@ public class Combo extends BusinessEntity {
 	@Transient
 	private Integer subQty;
 	@Transient
-	private String subeName;
+	private String subEname;
 	@Transient
 	private String subQuantity;
 	@Transient
@@ -79,12 +79,15 @@ public class Combo extends BusinessEntity {
 	public void setSubQty(Integer subQty) {
 		this.subQty = subQty;
 	}
-	public String getSubeName() {
-		return subeName;
+	
+	public String getSubEname() {
+		return subEname;
 	}
-	public void setSubeName(String subeName) {
-		this.subeName = subeName;
+
+	public void setSubEname(String subEname) {
+		this.subEname = subEname;
 	}
+
 	public String getSubQuantity() {
 		return subQuantity;
 	}

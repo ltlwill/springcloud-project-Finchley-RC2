@@ -175,7 +175,7 @@ public class ProductServiceImpl implements ProductService {
 		product = product == null ? new Product() : product;
 		combo = combo == null ? new Combo() : combo;
 		combo.setSubId(product.getId());
-		combo.setSubeName(product.getEname());
+		combo.setSubEname(product.getEname());
 		combo.setSubQty(product.getQuantity());
 		combo.setDefaultColor(product.getColor());
 		combo.setDefaultSize(product.getSize());

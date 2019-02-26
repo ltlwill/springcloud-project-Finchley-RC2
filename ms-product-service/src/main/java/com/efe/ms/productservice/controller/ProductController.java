@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.efe.ms.productservice.domain.Combo;
@@ -33,20 +32,14 @@ public class ProductController extends BaseController {
 	@Autowired
 	private ProductService productService;
 
-	/*
-	 * @ApiOperation(value = "分页获取产品信息")
-	 * 
-	 * @GetMapping() public Pagination<Product>
-	 * getAllProducts(Pagination<Product> page, Product product) { return
-	 * productService.getAllProducts(page, product); }
-	 */
+	
+	 /*@ApiOperation(value = "分页获取产品信息")
+	 @GetMapping()
+	 public Pagination<Product> getAllProducts(Pagination<Product> page, Product product) { 
+		 return productService.getAllProducts(page, product); 
+	 }*/
+	 
 
-	/*@ApiOperation(value = "分页获取产品信息")
-	@GetMapping
-	public Pagination<Product> getAllProductsByPage(@RequestParam("pageNo")Integer pageNo,
-			@RequestParam("pageSize") Integer pageSize,Product product) {
-		return productService.getAllProductsByPage(pageNo, pageSize, product);
-	}*/
 	@ApiOperation(value = "分页获取产品信息")
 	@GetMapping
 	public Pagination<Product> getAllProductsByPage(Integer pageNo,Integer pageSize,Product product) {

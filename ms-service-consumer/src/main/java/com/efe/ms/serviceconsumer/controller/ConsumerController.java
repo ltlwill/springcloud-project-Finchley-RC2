@@ -1,12 +1,16 @@
 package com.efe.ms.serviceconsumer.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.efe.ms.serviceconsumer.domain.Combo;
 import com.efe.ms.serviceconsumer.domain.Product;
 import com.efe.ms.serviceconsumer.service.ConsumerService;
 import com.efe.ms.serviceconsumer.vo.Pagination;
@@ -44,8 +48,24 @@ public class ConsumerController {
 	}
 	
 	@GetMapping("/products")
-	public Object getProducts(Pagination<Product> page,Product product) throws Exception{
+	public Pagination<Product> getProducts(Pagination<Product> page,Product product) throws Exception{
 		Pagination<Product> pageData = consumerService.getProducts(page, product);
 		return pageData;
 	}
+	
+	@GetMapping("/products/{sku}")
+	public Product getProductsBySku(@PathVariable String sku) throws Exception{
+		return consumerService.getProductBySku(sku);
+	}
+	
+	@GetMapping("/products/combo/{sku}")
+	public List<Combo> getComboListBySku(@PathVariable String sku) throws Exception{
+		return consumerService.getComboListBySku(sku); 
+	}
 }
+
+
+
+
+
+
